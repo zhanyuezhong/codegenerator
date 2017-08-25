@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyz.dao.PassfindMapper">
+  <resultMap id="BaseResultMap" type="com.zyz.bean.Passfind">
+    <id column="pfId" jdbcType="INTEGER" property="pfid" />
+    <result column="answer1" jdbcType="VARCHAR" property="answer1" />
+    <result column="answer2" jdbcType="VARCHAR" property="answer2" />
+    <result column="question1" jdbcType="VARCHAR" property="question1" />
+    <result column="question2" jdbcType="VARCHAR" property="question2" />
+    <result column="fkUserId" jdbcType="INTEGER" property="fkuserid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pfId, answer1, answer2, question1, question2, fkUserId
+  </sql>
+  <select id="selectByExample" parameterType="com.zyz.bean.PassfindExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from passfind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from passfind
+    where pfId = #{pfid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from passfind
+    where pfId = #{pfid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zyz.bean.PassfindExample">
+    delete from passfind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zyz.bean.Passfind">
+    insert into passfind (pfId, answer1, answer2, 
+      question1, question2, fkUserId
+      )
+    values (#{pfid,jdbcType=INTEGER}, #{answer1,jdbcType=VARCHAR}, #{answer2,jdbcType=VARCHAR}, 
+      #{question1,jdbcType=VARCHAR}, #{question2,jdbcType=VARCHAR}, #{fkuserid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyz.bean.Passfind">
+    insert into passfind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pfid != null">
+        pfId,
+      </if>
+      <if test="answer1 != null">
+        answer1,
+      </if>
+      <if test="answer2 != null">
+        answer2,
+      </if>
+      <if test="question1 != null">
+        question1,
+      </if>
+      <if test="question2 != null">
+        question2,
+      </if>
+      <if test="fkuserid != null">
+        fkUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pfid != null">
+        #{pfid,jdbcType=INTEGER},
+      </if>
+      <if test="answer1 != null">
+        #{answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer2 != null">
+        #{answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="question1 != null">
+        #{question1,jdbcType=VARCHAR},
+      </if>
+      <if test="question2 != null">
+        #{question2,jdbcType=VARCHAR},
+      </if>
+      <if test="fkuserid != null">
+        #{fkuserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zyz.bean.PassfindExample" resultType="java.lang.Integer">
+    select count(*) from passfind
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update passfind
+    <set>
+      <if test="record.pfid != null">
+        pfId = #{record.pfid,jdbcType=INTEGER},
+      </if>
+      <if test="record.answer1 != null">
+        answer1 = #{record.answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer2 != null">
+        answer2 = #{record.answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question1 != null">
+        question1 = #{record.question1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.question2 != null">
+        question2 = #{record.question2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fkuserid != null">
+        fkUserId = #{record.fkuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update passfind
+    set pfId = #{record.pfid,jdbcType=INTEGER},
+      answer1 = #{record.answer1,jdbcType=VARCHAR},
+      answer2 = #{record.answer2,jdbcType=VARCHAR},
+      question1 = #{record.question1,jdbcType=VARCHAR},
+      question2 = #{record.question2,jdbcType=VARCHAR},
+      fkUserId = #{record.fkuserid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyz.bean.Passfind">
+    update passfind
+    <set>
+      <if test="answer1 != null">
+        answer1 = #{answer1,jdbcType=VARCHAR},
+      </if>
+      <if test="answer2 != null">
+        answer2 = #{answer2,jdbcType=VARCHAR},
+      </if>
+      <if test="question1 != null">
+        question1 = #{question1,jdbcType=VARCHAR},
+      </if>
+      <if test="question2 != null">
+        question2 = #{question2,jdbcType=VARCHAR},
+      </if>
+      <if test="fkuserid != null">
+        fkUserId = #{fkuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pfId = #{pfid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyz.bean.Passfind">
+    update passfind
+    set answer1 = #{answer1,jdbcType=VARCHAR},
+      answer2 = #{answer2,jdbcType=VARCHAR},
+      question1 = #{question1,jdbcType=VARCHAR},
+      question2 = #{question2,jdbcType=VARCHAR},
+      fkUserId = #{fkuserid,jdbcType=INTEGER}
+    where pfId = #{pfid,jdbcType=INTEGER}
+  </update>
+</mapper>

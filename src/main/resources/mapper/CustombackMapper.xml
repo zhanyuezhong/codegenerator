@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyz.dao.CustombackMapper">
+  <resultMap id="BaseResultMap" type="com.zyz.bean.Customback">
+    <id column="cbId" jdbcType="INTEGER" property="cbid" />
+    <result column="backMessage" jdbcType="VARCHAR" property="backmessage" />
+    <result column="cbState" jdbcType="VARCHAR" property="cbstate" />
+    <result column="cbdate" jdbcType="DATE" property="cbdate" />
+    <result column="customerName" jdbcType="VARCHAR" property="customername" />
+    <result column="fkUserid" jdbcType="INTEGER" property="fkuserid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cbId, backMessage, cbState, cbdate, customerName, fkUserid
+  </sql>
+  <select id="selectByExample" parameterType="com.zyz.bean.CustombackExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customback
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customback
+    where cbId = #{cbid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customback
+    where cbId = #{cbid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zyz.bean.CustombackExample">
+    delete from customback
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zyz.bean.Customback">
+    insert into customback (cbId, backMessage, cbState, 
+      cbdate, customerName, fkUserid
+      )
+    values (#{cbid,jdbcType=INTEGER}, #{backmessage,jdbcType=VARCHAR}, #{cbstate,jdbcType=VARCHAR}, 
+      #{cbdate,jdbcType=DATE}, #{customername,jdbcType=VARCHAR}, #{fkuserid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyz.bean.Customback">
+    insert into customback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cbid != null">
+        cbId,
+      </if>
+      <if test="backmessage != null">
+        backMessage,
+      </if>
+      <if test="cbstate != null">
+        cbState,
+      </if>
+      <if test="cbdate != null">
+        cbdate,
+      </if>
+      <if test="customername != null">
+        customerName,
+      </if>
+      <if test="fkuserid != null">
+        fkUserid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cbid != null">
+        #{cbid,jdbcType=INTEGER},
+      </if>
+      <if test="backmessage != null">
+        #{backmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="cbstate != null">
+        #{cbstate,jdbcType=VARCHAR},
+      </if>
+      <if test="cbdate != null">
+        #{cbdate,jdbcType=DATE},
+      </if>
+      <if test="customername != null">
+        #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="fkuserid != null">
+        #{fkuserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zyz.bean.CustombackExample" resultType="java.lang.Integer">
+    select count(*) from customback
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update customback
+    <set>
+      <if test="record.cbid != null">
+        cbId = #{record.cbid,jdbcType=INTEGER},
+      </if>
+      <if test="record.backmessage != null">
+        backMessage = #{record.backmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbstate != null">
+        cbState = #{record.cbstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbdate != null">
+        cbdate = #{record.cbdate,jdbcType=DATE},
+      </if>
+      <if test="record.customername != null">
+        customerName = #{record.customername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fkuserid != null">
+        fkUserid = #{record.fkuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update customback
+    set cbId = #{record.cbid,jdbcType=INTEGER},
+      backMessage = #{record.backmessage,jdbcType=VARCHAR},
+      cbState = #{record.cbstate,jdbcType=VARCHAR},
+      cbdate = #{record.cbdate,jdbcType=DATE},
+      customerName = #{record.customername,jdbcType=VARCHAR},
+      fkUserid = #{record.fkuserid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyz.bean.Customback">
+    update customback
+    <set>
+      <if test="backmessage != null">
+        backMessage = #{backmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="cbstate != null">
+        cbState = #{cbstate,jdbcType=VARCHAR},
+      </if>
+      <if test="cbdate != null">
+        cbdate = #{cbdate,jdbcType=DATE},
+      </if>
+      <if test="customername != null">
+        customerName = #{customername,jdbcType=VARCHAR},
+      </if>
+      <if test="fkuserid != null">
+        fkUserid = #{fkuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cbId = #{cbid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyz.bean.Customback">
+    update customback
+    set backMessage = #{backmessage,jdbcType=VARCHAR},
+      cbState = #{cbstate,jdbcType=VARCHAR},
+      cbdate = #{cbdate,jdbcType=DATE},
+      customerName = #{customername,jdbcType=VARCHAR},
+      fkUserid = #{fkuserid,jdbcType=INTEGER}
+    where cbId = #{cbid,jdbcType=INTEGER}
+  </update>
+</mapper>

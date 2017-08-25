@@ -1,0 +1,8 @@
+
+
+
+CREATE TABLE users (
+  id int PRIMARY KEY AUTO_INCREMENT COMMENT '',
+  name VARBINARY(10),
+  birthday DATE
+) COMMENT '';

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyz.dao.CustomertypeMapper">
+  <resultMap id="BaseResultMap" type="com.zyz.bean.Customertype">
+    <id column="ctId" jdbcType="INTEGER" property="ctid" />
+    <result column="ctName" jdbcType="VARCHAR" property="ctname" />
+    <result column="fkUserId" jdbcType="INTEGER" property="fkuserid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ctId, ctName, fkUserId
+  </sql>
+  <select id="selectByExample" parameterType="com.zyz.bean.CustomertypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customertype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customertype
+    where ctId = #{ctid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customertype
+    where ctId = #{ctid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zyz.bean.CustomertypeExample">
+    delete from customertype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zyz.bean.Customertype">
+    insert into customertype (ctId, ctName, fkUserId
+      )
+    values (#{ctid,jdbcType=INTEGER}, #{ctname,jdbcType=VARCHAR}, #{fkuserid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zyz.bean.Customertype">
+    insert into customertype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ctid != null">
+        ctId,
+      </if>
+      <if test="ctname != null">
+        ctName,
+      </if>
+      <if test="fkuserid != null">
+        fkUserId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ctid != null">
+        #{ctid,jdbcType=INTEGER},
+      </if>
+      <if test="ctname != null">
+        #{ctname,jdbcType=VARCHAR},
+      </if>
+      <if test="fkuserid != null">
+        #{fkuserid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zyz.bean.CustomertypeExample" resultType="java.lang.Integer">
+    select count(*) from customertype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update customertype
+    <set>
+      <if test="record.ctid != null">
+        ctId = #{record.ctid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ctname != null">
+        ctName = #{record.ctname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fkuserid != null">
+        fkUserId = #{record.fkuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update customertype
+    set ctId = #{record.ctid,jdbcType=INTEGER},
+      ctName = #{record.ctname,jdbcType=VARCHAR},
+      fkUserId = #{record.fkuserid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zyz.bean.Customertype">
+    update customertype
+    <set>
+      <if test="ctname != null">
+        ctName = #{ctname,jdbcType=VARCHAR},
+      </if>
+      <if test="fkuserid != null">
+        fkUserId = #{fkuserid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ctId = #{ctid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zyz.bean.Customertype">
+    update customertype
+    set ctName = #{ctname,jdbcType=VARCHAR},
+      fkUserId = #{fkuserid,jdbcType=INTEGER}
+    where ctId = #{ctid,jdbcType=INTEGER}
+  </update>
+</mapper>
