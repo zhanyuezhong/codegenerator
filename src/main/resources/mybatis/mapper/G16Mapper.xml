@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zyz.dao.G16Dao">
+
+
+
+
+    <insert id="insert" parameterType="com.zyz.bean.G16">
+    insert  into T_G16 (ID, CREATE_ID, DELETE_ID,
+      AREACD, TYPE, CXR, FILLER,
+      EFFDATE, DISDATE, STAMP,
+      PRIVATE_TAG, FILLER1, PAPERTARIFF,
+      NTANUM, DOTNUM, FCAST,
+      FCTARIFFCD, FCTARIFFNUM, FRAST,
+      FRTARIFFCD, FRTARIFFNUM, GRAST,
+      GRTARIFFCD, GRTARIFFNUM, FF1AST,
+      FF1TARIFFCD, FF1TARIFFNUM, AFZ1AST,
+      AFZ1TARIFFCD, AFZ1TARIFFNUM, FF2AST,
+      FF2TARIFFCD, FF2TARIFFNUM, AFZ2AST,
+      AFZ2TARIFFCD, AFZ2TARIFFNUM, FF3AST,
+      FF3TARIFFCD, FF3TARIFFNUM, AFZ3AST,
+      AFZ3TARIFFCD, AFZ3TARIFFNUM, FF4AST,
+      FF4TARIFFCD, FF4TARIFFNUM, AFZ4AST,
+      AFZ4TARIFFCD, AFZ4TARIFFNUM, FILLER2,
+      UNPUBAST, UNPUBTARIFFCD, UNPUBTARIFFNUM,
+      RTG1AST, RTG1TARIFFCD, RTG1TARIFFNUM,
+      AREACODE1, AREACODE3, AREACODE2,
+      AREACODE4, RTG2AST, RTG2TARIFFCD,
+      RTG2TARIFFNUM, FILLER3, FILLER4,
+      CreateTime, UpdateTime)
+    values (#{id,jdbcType=BIGINT}, #{createId,jdbcType=BIGINT}, #{deleteId,jdbcType=BIGINT},
+      #{areacd,jdbcType=CHAR}, #{type,jdbcType=CHAR}, #{cxr,jdbcType=CHAR}, #{filler,jdbcType=VARCHAR},
+      #{effdate,jdbcType=TIMESTAMP}, #{disdate,jdbcType=TIMESTAMP}, #{stamp,jdbcType=TIMESTAMP},
+      #{privateTag,jdbcType=CHAR}, #{filler1,jdbcType=VARCHAR}, #{papertariff,jdbcType=VARCHAR},
+      #{ntanum,jdbcType=VARCHAR}, #{dotnum,jdbcType=VARCHAR}, #{fcast,jdbcType=CHAR},
+      #{fctariffcd,jdbcType=VARCHAR}, #{fctariffnum,jdbcType=VARCHAR}, #{frast,jdbcType=CHAR},
+      #{frtariffcd,jdbcType=VARCHAR}, #{frtariffnum,jdbcType=VARCHAR}, #{grast,jdbcType=CHAR},
+      #{grtariffcd,jdbcType=VARCHAR}, #{grtariffnum,jdbcType=VARCHAR}, #{ff1ast,jdbcType=CHAR},
+      #{ff1tariffcd,jdbcType=VARCHAR}, #{ff1tariffnum,jdbcType=VARCHAR}, #{afz1ast,jdbcType=CHAR},
+      #{afz1tariffcd,jdbcType=VARCHAR}, #{afz1tariffnum,jdbcType=VARCHAR}, #{ff2ast,jdbcType=CHAR},
+      #{ff2tariffcd,jdbcType=VARCHAR}, #{ff2tariffnum,jdbcType=VARCHAR}, #{afz2ast,jdbcType=CHAR},
+      #{afz2tariffcd,jdbcType=VARCHAR}, #{afz2tariffnum,jdbcType=VARCHAR}, #{ff3ast,jdbcType=CHAR},
+      #{ff3tariffcd,jdbcType=VARCHAR}, #{ff3tariffnum,jdbcType=VARCHAR}, #{afz3ast,jdbcType=CHAR},
+      #{afz3tariffcd,jdbcType=VARCHAR}, #{afz3tariffnum,jdbcType=VARCHAR}, #{ff4ast,jdbcType=CHAR},
+      #{ff4tariffcd,jdbcType=VARCHAR}, #{ff4tariffnum,jdbcType=VARCHAR}, #{afz4ast,jdbcType=CHAR},
+      #{afz4tariffcd,jdbcType=VARCHAR}, #{afz4tariffnum,jdbcType=VARCHAR}, #{filler2,jdbcType=VARCHAR},
+      #{unpubast,jdbcType=CHAR}, #{unpubtariffcd,jdbcType=VARCHAR}, #{unpubtariffnum,jdbcType=VARCHAR},
+      #{rtg1ast,jdbcType=CHAR}, #{rtg1tariffcd,jdbcType=VARCHAR}, #{rtg1tariffnum,jdbcType=VARCHAR},
+      #{areacode1,jdbcType=VARCHAR}, #{areacode3,jdbcType=VARCHAR}, #{areacode2,jdbcType=VARCHAR},
+      #{areacode4,jdbcType=VARCHAR}, #{rtg2ast,jdbcType=CHAR}, #{rtg2tariffcd,jdbcType=VARCHAR},
+      #{rtg2tariffnum,jdbcType=VARCHAR}, #{filler3,jdbcType=VARCHAR}, #{filler4,jdbcType=VARCHAR},
+      now(), now())
+    </insert>
+
+
+
+</mapper>

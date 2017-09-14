@@ -23,7 +23,7 @@
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="${mapper.package}"  targetProject="src\main\resources"/>
+        <sqlMapGenerator targetPackage="${mybatis.mapper.package}" targetProject="src\main\resources"/>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="${dao.package}"  targetProject="src\main\java"/>
 

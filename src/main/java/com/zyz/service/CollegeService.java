@@ -24,5 +24,5 @@ public interface CollegeService {
 
 
 
-    PageInfo queryPage(College college, int offset, int limit);
+    PageInfo queryPage(College college, int pageNum, int pageSize);
 }

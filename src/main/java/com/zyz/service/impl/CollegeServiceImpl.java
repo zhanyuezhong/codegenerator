@@ -10,6 +10,7 @@ import com.zyz.dao.CollegeMapper;
 import com.zyz.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,16 +23,19 @@ public class CollegeServiceImpl implements CollegeService {
     @Autowired
     private CollegeMapper mapper;
     @Override
+    @Transactional
     public Integer insert(College college) {
         return mapper.insert(college);
     }
 
+    @Transactional
     @Override
     public Integer update(College college) {
         return mapper.updateByPrimaryKeySelective(college);
 
     }
 
+    @Transactional
     @Override
     public Integer delete(Integer id) {
         return mapper.deleteByPrimaryKey(id);
@@ -52,9 +56,9 @@ public class CollegeServiceImpl implements CollegeService {
 
     private CollegeExample getQueryParam(College college){
         CollegeExample example = new CollegeExample();
-        CollegeExample.Criteria criteria = example.createCriteria();
-        criteria.andCollegenameLike(college.getCollegename());
-        criteria.andCollidEqualTo(college.getCollid());
+       // CollegeExample.Criteria criteria = example.createCriteria();
+       // criteria.andCollegenameLike(college.getCollegename());
+        //criteria.andCollidEqualTo(college.getCollid());
         return  example;
     }
 
